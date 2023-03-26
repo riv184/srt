@@ -8,7 +8,7 @@
 #include "core.h"
 #include "packetfilter.h"
 #include "packetfilter_api.h"
-#include "test_env.h"
+#include "test_init.h"
 
 // For direct imp access
 #include "api.h"
@@ -208,7 +208,8 @@ bool filterConfigSame(const string& config1, const string& config2)
 
 TEST(TestFEC, ConfigExchange)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     CUDTSocket* s1;
 
@@ -239,8 +240,8 @@ TEST(TestFEC, ConfigExchange)
 
 TEST(TestFEC, ConfigExchangeFaux)
 {
-    srt::TestEnv testSetup;
-
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
     CUDTSocket* s1;
 
     SRTSOCKET sid1 = CUDT::uglobal().newSocket(&s1);
@@ -277,7 +278,9 @@ TEST(TestFEC, ConfigExchangeFaux)
 
 TEST(TestFEC, Connection)
 {
-    srt::TestEnv testSetup;
+
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -331,7 +334,8 @@ TEST(TestFEC, Connection)
 
 TEST(TestFEC, ConnectionReorder)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -383,7 +387,8 @@ TEST(TestFEC, ConnectionReorder)
 
 TEST(TestFEC, ConnectionFull1)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -434,7 +439,8 @@ TEST(TestFEC, ConnectionFull1)
 }
 TEST(TestFEC, ConnectionFull2)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -486,7 +492,8 @@ TEST(TestFEC, ConnectionFull2)
 
 TEST(TestFEC, ConnectionMess)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -538,7 +545,8 @@ TEST(TestFEC, ConnectionMess)
 
 TEST(TestFEC, ConnectionForced)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -584,7 +592,8 @@ TEST(TestFEC, ConnectionForced)
 
 TEST(TestFEC, RejectionConflict)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -626,7 +635,8 @@ TEST(TestFEC, RejectionConflict)
 
 TEST(TestFEC, RejectionIncompleteEmpty)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();
@@ -666,7 +676,8 @@ TEST(TestFEC, RejectionIncompleteEmpty)
 
 TEST(TestFEC, RejectionIncomplete)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     SRTSOCKET s = srt_create_socket();
     SRTSOCKET l = srt_create_socket();

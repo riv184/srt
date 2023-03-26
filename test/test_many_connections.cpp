@@ -18,7 +18,6 @@ typedef int SOCKET;
 
 #include"platform_sys.h"
 #include "srt.h"
-#include "test_env.h"
 #include "netinet_any.h"
 #include "api.h"
 
@@ -49,7 +48,7 @@ protected:
     // SetUp() is run immediately before a test starts.
     void SetUp() override
     {
-        ASSERT_EQ(testSetup.getSrtStartupVal(), 0);
+        ASSERT_EQ(srt_startup(), 0);
 
         m_sa.sin_family = AF_INET;
         m_sa.sin_addr.s_addr = INADDR_ANY;
@@ -86,7 +85,7 @@ protected:
 
     void TearDown() override
     {
-        // srt_cleanup() called in testSetup destructor 
+        srt_cleanup(); 
     }
 
     void AcceptLoop()
@@ -123,7 +122,6 @@ protected:
     std::array<char, SRT_LIVE_DEF_PLSIZE> m_buf;
     SRTSOCKET m_connections[NSOCK];
     volatile bool m_accept_exit = false;
-    srt::TestEnv testSetup;
 };
 
 

@@ -17,7 +17,7 @@
 #endif
 
 #include "srt.h"
-#include "test_env.h"
+#include "test_init.h"
 
 #include <array>
 #include <thread>
@@ -30,7 +30,8 @@
 
 TEST(Transmission, FileUpload)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     // Generate the source file
     // We need a file that will contain more data

@@ -7,14 +7,15 @@
 #include "gtest/gtest.h"
 
 #include "srt.h"
-#include "test_env.h"
+#include "test_init.h"
 #include "netinet_any.h"
 
 TEST(Bonding, SRTConnectGroup)
 {
     struct sockaddr_in sa;
 
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
 
     const int ss = srt_create_group(SRT_GTYPE_BROADCAST);
     ASSERT_NE(ss, SRT_ERROR);
@@ -133,7 +134,8 @@ void ConnectCallback(void* /*opaq*/, SRTSOCKET sock, int error, const sockaddr* 
 
 TEST(Bonding, NonBlockingGroupConnect)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
     
     const int ss = srt_create_group(SRT_GTYPE_BROADCAST);
     ASSERT_NE(ss, SRT_ERROR);
@@ -225,7 +227,8 @@ void ConnectCallback_Close(void* /*opaq*/, SRTSOCKET sock, int error, const sock
 
 TEST(Bonding, CloseGroupAndSocket)
 {
-    srt::TestEnv testSetup;
+    srt::TestInit srtTestInitObj;
+    ASSERT_NE(srtTestInitObj.getSrtStartupVal(), SRT_ERROR);
     
     const int ss = srt_create_group(SRT_GTYPE_BROADCAST);
     ASSERT_NE(ss, SRT_ERROR);
